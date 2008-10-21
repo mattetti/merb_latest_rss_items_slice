@@ -2,14 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Fresh MerbLatestRssItemsSlice Slice</title>
-    <link href="<%= public_path_for :stylesheet, 'master.css' %>" type="text/css" charset="utf-8" rel="stylesheet" media="all" />
-    <script src="<%= public_path_for :javascript, 'master.js' %>" type="text/javascript" charset="utf-8"></script>
+    <title>Merb Latest Rss Items Slice Preview</title>
+    <link href='/stylesheets/merb-latest-rss-slice.css' rel='stylesheet' type='text/css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/javascripts/merb-latest-rss-slice.js" type="text/javascript" charset="utf-8"></script>
   </head>
-  <!-- you can override this layout at slices/merb_latest_rss_items_slice/app/views/layout/merb_latest_rss_items_slice.html.erb -->
   <body class="merb_latest_rss_items_slice-slice">
   <div id="container">
-	  <h1>MerbLatestRssItemsSlice Slice</h1>
+	  <h1>Merb Latest Rss Items Slice Example:</h1>
+	  
     <div id="main"><%= catch_content :for_layout %></div>
   </div>
   </body>

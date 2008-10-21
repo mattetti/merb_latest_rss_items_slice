@@ -25,7 +25,7 @@ Merb::Config.use do |c|
 
   # Sets up a custom session id key which is used for the session persistence
   # cookie name.  If not specified, defaults to '_session_id'.
-  # c[:session_id_key] = '_session_id'
+  c[:session_id_key] = '_matt-slice_id'
   
   # The session_secret_key is only required for the cookie session store.
   c[:session_secret_key]  = 'd52d8b420729739edde160510eee97d16f4874d7'

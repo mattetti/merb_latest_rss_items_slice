@@ -59,6 +59,30 @@ module Merb
         ::MerbLatestRssItemsSlice.slice_path_for(type, *segments)
       end
       
+      def item_link(item)
+        item.find_node("#{@item_structure[:link]}/text()")
+      end
+      
+      def item_title(item)
+        item.find_node("#{@item_structure[:title]}/text()")
+      end
+      
+      def item_author(item)
+        item.find_node("#{@item_structure[:author]}/text()")
+      end
+      
+      def item_body(item)
+        item.find_node("#{@item_structure[:body]}/text()")
+      end
+      
+      def item_description(item)
+        item.find_node("#{@item_structure[:description]}/text()")
+      end
+      
+      def item_date(item)
+        Time.rfc2822(item.find_node("#{@item_structure[:date]}/text()").to_s).strftime("%Y-%m-%d")
+      end
+      
     end
   end
 end

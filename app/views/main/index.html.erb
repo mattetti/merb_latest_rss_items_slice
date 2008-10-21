@@ -1,1 +1,15 @@
-<strong><%= slice.description %></strong> (v. <%= slice.version %>)
+<h2 class="feed-title"><%=h @feed.title %></h2>
+<div class="merb-latest-rss-merb-slice">
+<blockquote><p class="feed-description"><%=h @feed.description %></p></blockquote>
+<% @feed_items.each_with_index do |item, index| %>
+  <div id="msrss-<%= index %>" >
+    <h3 class="item-title"><a href="<%= item_link(item) %>"><%= item_title(item) %></a> <span class="item-date">(<%= item_date(item) %>)</span></h3>
+    <div class="item-description"><%= item_description(item) %></div>
+    <div class="item-body" style="display:none"><%= item_body(item) %></div>
+    <a href="<%= item_link(item) %>" class="x-link show-more">More</a>
+    <div class="item-author">by <%= item_author(item) %></div>
+  </div>
+<% end -%>
+<br/>
+(slice v. <%= slice.version %>)
+</div>

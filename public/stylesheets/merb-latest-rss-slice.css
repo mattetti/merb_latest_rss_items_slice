@@ -1,0 +1,10 @@
+html, body { margin: 0; padding: 0; }
+#container { width: 800px; margin: 4em auto; padding: 4em 4em 6em 4em; background: #DDDDDD; }
+
+.feed-title{ color: rgb(0, 66, 118); font-family: Georgia; height: 64px; padding:0; margin-bottom: -2em;}
+.merb-latest-rss-merb-slice{font-family: Georgia;}
+.merb-latest-rss-merb-slice a{color: rgb(0, 66, 118);}
+.item-title {}
+.item-date { color: #6f6f6f; font-size: 76%; padding-left: 1em;}
+.item-author { color: rgb(128, 128, 128); font-size: 86%;}
+.item-description { font-size: 90%;}

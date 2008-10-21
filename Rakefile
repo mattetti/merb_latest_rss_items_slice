@@ -5,14 +5,14 @@ require 'merb-core'
 require 'merb-core/tasks/merb'
 
 GEM_NAME = "merb_latest_rss_items_slice"
-AUTHOR = "Your Name"
-EMAIL = "Your Email"
-HOMEPAGE = "http://merbivore.com/"
-SUMMARY = "Merb Slice that provides ..."
+AUTHOR = "Matt Aimonetti"
+EMAIL = "mattaimonetti@gmail.com"
+HOMEPAGE = "http://merbist.com/"
+SUMMARY = "Merb Slice that provides RSS links display"
 GEM_VERSION = "0.9.10"
 
 spec = Gem::Specification.new do |s|
-  s.rubyforge_project = 'merb'
+  s.rubyforge_project = 'merb_latest_rss_items_slice'
   s.name = GEM_NAME
   s.version = GEM_VERSION
   s.platform = Gem::Platform::RUBY
@@ -24,6 +24,7 @@ spec = Gem::Specification.new do |s|
   s.email = EMAIL
   s.homepage = HOMEPAGE
   s.add_dependency('merb-slices', '>= 0.9.10')
+  s.add_dependency('feedtools', '>= 0.2.29')
   s.require_path = 'lib'
   s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,spec,app,public,stubs}/**/*")
 end

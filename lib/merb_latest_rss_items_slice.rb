@@ -3,6 +3,8 @@ if defined?(Merb::Plugins)
   $:.unshift File.dirname(__FILE__)
 
   load_dependency 'merb-slices'
+  require 'feed_tools'
+  
   Merb::Plugins.add_rakefiles "merb_latest_rss_items_slice/merbtasks", "merb_latest_rss_items_slice/slicetasks", "merb_latest_rss_items_slice/spectasks"
 
   # Register the Slice for the current host application
@@ -16,6 +18,8 @@ if defined?(Merb::Plugins)
   # :layout - the layout to use; defaults to :merb_latest_rss_items_slice
   # :mirror - which path component types to use on copy operations; defaults to all
   Merb::Slices::config[:merb_latest_rss_items_slice][:layout] ||= :merb_latest_rss_items_slice
+  Merb::Slices::config[:merb_latest_rss_items_slice][:feed] ||= "http://merbist.com/feed"
+  Merb::Slices::config[:merb_latest_rss_items_slice][:item_structure] ||= {:title => 'title', :link => 'link', :date => 'pubDate', :author => 'dc:creator', :description => 'description', :body => 'content:encoded'}
   
   # All Slice code is expected to be namespaced inside a module
   module MerbLatestRssItemsSlice
@@ -23,7 +27,7 @@ if defined?(Merb::Plugins)
     # Slice metadata
     self.description = "MerbLatestRssItemsSlice is a chunky Merb slice!"
     self.version = "0.0.1"
-    self.author = "Engine Yard"
+    self.author = "Matt Aimonetti"
     
     # Stub classes loaded hook - runs before LoadClasses BootLoader
     # right after a slice's classes have been loaded internally.
@@ -69,6 +73,7 @@ if defined?(Merb::Plugins)
   #
   # MerbLatestRssItemsSlice.push_path(:application, MerbLatestRssItemsSlice.root)
   # MerbLatestRssItemsSlice.push_app_path(:application, Merb.root / 'slices' / 'merb_latest_rss_items_slice')
+  MerbLatestRssItemsSlice.push_app_path(:stylesheet, MerbLatestRssItemsSlice.root / 'public' / 'stylesheets')
   # ...
   #
   # Any component path that hasn't been set will default to MerbLatestRssItemsSlice.root
