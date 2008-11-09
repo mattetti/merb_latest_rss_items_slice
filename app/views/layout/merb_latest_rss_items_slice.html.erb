@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Merb Latest Rss Items Slice Preview</title>
-    <link href='/stylesheets/merb-latest-rss-slice.css' rel='stylesheet' type='text/css' />
+    <link href='<%= stylesheet_path "merb-latest-rss-slice.css" %>' rel='stylesheet' type='text/css' />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/javascripts/merb-latest-rss-slice.js" type="text/javascript" charset="utf-8"></script>
   </head>
@@ -11,6 +11,7 @@
   <div id="container">
 	  <h1>Merb Latest Rss Items Slice Example:</h1>
 	  
+	  <% debugger %>
     <div id="main"><%= catch_content :for_layout %></div>
   </div>
   </body>

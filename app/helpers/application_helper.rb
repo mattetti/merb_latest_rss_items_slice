@@ -2,6 +2,10 @@ module Merb
   module MerbLatestRssItemsSlice
     module ApplicationHelper
       
+      def standalone?
+        Merb.root == ::MerbLatestRssItemsSlice.root
+      end
+      
       # @param *segments<Array[#to_s]> Path segments to append.
       #
       # @return <String> 

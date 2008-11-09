@@ -57,9 +57,9 @@ if defined?(Merb::Plugins)
     #   to avoid potential conflicts with global named routes.
     def self.setup_router(scope)
       # example of a named route
-      scope.match('/index(.:format)').to(:controller => 'main', :action => 'index').name(:index)
+      scope.match('/latest-news(.:format)').to(:controller => 'main', :action => 'index').name(:index)
       # the slice is mounted at /merb_latest_rss_items_slice - note that it comes before default_routes
-      scope.match('/').to(:controller => 'main', :action => 'index').name(:home)
+      # scope.match('/').to(:controller => 'main', :action => 'index').name(:home)
       # enable slice-level default routes by default
       scope.default_routes
     end
@@ -73,7 +73,7 @@ if defined?(Merb::Plugins)
   #
   # MerbLatestRssItemsSlice.push_path(:application, MerbLatestRssItemsSlice.root)
   # MerbLatestRssItemsSlice.push_app_path(:application, Merb.root / 'slices' / 'merb_latest_rss_items_slice')
-  MerbLatestRssItemsSlice.push_app_path(:stylesheet, MerbLatestRssItemsSlice.root / 'public' / 'stylesheets')
+  # MerbLatestRssItemsSlice.push_app_path(:stylesheet, MerbLatestRssItemsSlice.root / 'public' / 'stylesheets')
   # ...
   #
   # Any component path that hasn't been set will default to MerbLatestRssItemsSlice.root

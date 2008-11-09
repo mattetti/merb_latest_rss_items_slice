@@ -1,21 +1,30 @@
-require 'rubygems'
-require 'merb-core'
+require "rubygems"
+
+# Add the local gems dir if found within the app root; any dependencies loaded
+# hereafter will try to load from the local gems before loading system gems.
+if (local_gem_dir = File.join(File.dirname(__FILE__), '..', 'gems')) && $BUNDLE.nil?
+  $BUNDLE = true; Gem.clear_paths; Gem.path.unshift(local_gem_dir)
+end
+
+require "merb-core"
 require 'merb-slices'
-require 'spec'
+require "spec" # Satisfies Autotest and anyone else not using the Rake tasks
 
 # Add merb_latest_rss_items_slice.rb to the search path
 Merb::Plugins.config[:merb_slices][:auto_register] = true
 Merb::Plugins.config[:merb_slices][:search_path]   = File.join(File.dirname(__FILE__), '..', 'lib', 'merb_latest_rss_items_slice.rb')
 
-# Using Merb.root below makes sure that the correct root is set for
-# - testing standalone, without being installed as a gem and no host application
-# - testing from within the host application; its root will be used
-Merb.start_environment(
-  :testing => true, 
-  :adapter => 'runner', 
-  :environment => ENV['MERB_ENV'] || 'test',
-  :session_store => 'memory'
-)
+# this loads all plugins required in your init file so don't add them
+# here again, Merb will do it for you
+Merb.start_environment(:testing => true, :adapter => 'runner', :environment => ENV['MERB_ENV'] || 'test')
+
+Spec::Runner.configure do |config|
+  config.include(Merb::Test::ViewHelper)
+  config.include(Merb::Test::RouteHelper)
+  config.include(Merb::Test::ControllerHelper)
+  config.include(Merb::Test::SliceHelper)
+end
+
 
 module Merb
   module Test
@@ -33,11 +42,4 @@ module Merb
       
     end
   end
-end
-
-Spec::Runner.configure do |config|
-  config.include(Merb::Test::ViewHelper)
-  config.include(Merb::Test::RouteHelper)
-  config.include(Merb::Test::ControllerHelper)
-  config.include(Merb::Test::SliceHelper)
 end

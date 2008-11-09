@@ -4,12 +4,24 @@ require 'rake/gempackagetask'
 require 'merb-core'
 require 'merb-core/tasks/merb'
 
+dependency 'dm-core'
+dependency 'merb_datamapper'
+
+# Load the basic runtime dependencies; this will include 
+# any plugins and therefore plugin rake tasks.
+init_env = ENV['MERB_ENV'] || 'development'
+Merb.load_dependencies(:environment => init_env)
+
+# Get Merb plugins and dependencies
+Merb::Plugins.rakefiles.each { |r| require r }
+
+
 GEM_NAME = "merb_latest_rss_items_slice"
 AUTHOR = "Matt Aimonetti"
 EMAIL = "mattaimonetti@gmail.com"
 HOMEPAGE = "http://merbist.com/"
 SUMMARY = "Merb Slice that provides RSS links display"
-GEM_VERSION = "0.9.10"
+GEM_VERSION = "0.0.1"
 
 spec = Gem::Specification.new do |s|
   s.rubyforge_project = 'merb_latest_rss_items_slice'
